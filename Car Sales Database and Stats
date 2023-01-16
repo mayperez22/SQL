@@ -1,0 +1,27 @@
+CREATE TABLE Cars (Id INTEGER, Make TEXT, Model TEXT, Year INTEGER, Color TEXT, Price INTEGER);
+
+INSERT INTO Cars VALUES (1, "Nissan", "Altima", 2017, "Pearl White",15000);
+INSERT INTO Cars VALUES (2, "Toyota", "Rav4", 2016, "Grey", 18000);
+INSERT INTO Cars VALUES (3, "Honda", "Accord", 2010, "Grey", 9000);
+INSERT INTO Cars VALUES (4, "Toyota", "Camry", 2020, "White", 22000);
+INSERT INTO Cars VALUES (5, "Nissan", "Sentra", 2015, "Red", 13000);
+INSERT INTO Cars VALUES (6, "Honda", "CRV", 2022, "Silver", 26000);
+INSERT INTO Cars VALUES (7, "Honda", "Civic", 2013, "Blue", 13000);
+INSERT INTO Cars VALUES (8, "Toyota", "4Runner", 2021, "Black", 26000);
+INSERT INTO Cars VALUES (9, "Toyota", "Corolla", 2014, "White", 10000);
+INSERT INTO Cars VALUES (10, "Chevrolet", "Tahoe", 2011, "Silver", 12000);
+INSERT INTO Cars VALUES (11, "Chevrolet", "Cruze", 2012, "Blue", 11000);
+INSERT INTO Cars VALUES (12, "Jeep", "Wrangler", 2015, "Black", 14000);
+INSERT INTO Cars VALUES (13, "Ford", "Ranger", 2012, "Green", 11000); 
+INSERT INTO Cars VALUES (14, "Toyota", "Tundra", 2014, "White", 15000);
+INSERT INTO Cars VALUES (15, "Chevrolet", "Silverado", 2018, "Silver", 16000);
+
+--display database order by year.
+SELECT * From Cars ORDER BY Year;
+
+--what is the average price of cars?
+SELECT AVG(price) "Average Price" From Cars;
+
+--Searching for a car over the average price but in the color white.
+SELECT * FROM Cars WHERE price > 15400
+AND color = "white";
