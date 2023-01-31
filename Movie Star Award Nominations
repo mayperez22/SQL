@@ -1,0 +1,88 @@
+/* Create table about the people and what they do here */
+
+--Famous movie stars with nominations
+
+--Table of actors names, age, and number of movies they have been in
+CREATE TABLE Movie_Stars (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER,
+    in_how_many_movies INTEGER);
+    
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Chris Evans", 41, 56); 
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Scarlett Johansson", 38, 70);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Robert Downey Jr.", 57, 81);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Brie Larson", 33, 46);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Jennifer Lawrence", 32, 46);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Meryl Streep", 73, 76);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Robert De Niro", 76, 117);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Bradley Cooper", 48, 55);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Jane Fonda", 85, 55);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Reese Witherspoon", 46, 53);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Will Smith", 54, 38);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Zendaya", 26, 19);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Timothee Chalamet", 27, 24);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Leo DiCaprio", 48, 68);
+INSERT INTO Movie_Stars (fullname, age, in_how_many_movies) VALUES ("Sandra Bullock", 58, 44);
+
+
+
+
+-- Table of notable nominated awards that the actors have each been nominated in
+CREATE TABLE Nominated_Awards (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    Academy_Awards INTEGER,
+    Emmy_Awards INTEGER,
+    Golden_Globes INTEGER,
+    Screen_Actors_Guild INTEGER);
+    
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Chris Evans", 0, 0, 0, 0);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Scarlett Johansson", 2, 0, 5, 3);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Robert Downey Jr.", 2, 1, 4, 4);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Brie Larson", 1, 1, 1, 1);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Jennifer Lawrence", 4, 0, 5, 5);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Meryl Streep", 21, 5, 33, 18);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Robert De Niro", 8, 4, 10, 5);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Bradley Cooper", 9, 0, 6, 5);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Jane Fonda", 7, 5, 16, 4);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Reese Witherspoon", 2, 4, 9, 4);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Will Smith", 3, 1, 6, 2);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Will Smith", 3, 1, 6, 2);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Zendaya", 0, 5, 1, 1);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Timothee Chalamet", 1, 0, 2, 5);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Leo DiCaprio", 7, 0, 13, 12);
+INSERT INTO Nominated_Awards (fullname, academy_awards, Emmy_Awards, Golden_Globes, Screen_Actors_Guild) VALUES ("Sandra Bullock", 2, 0, 5, 3);
+
+
+--Table of number of nominations in Best Actor/Actress and Best Supporting Actor/Actress each actor has had
+CREATE TABLE Award_Categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    "Best Actor/Actress" INTEGER,
+    "Best Supporting Actor/Actress" INTEGER);
+    
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Chris Evans", 0, 0);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Scarlett Johansson", 6, 3);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Robert Downey Jr.", 4, 5);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Brie Larson", 3, 0);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Jennifer Lawrence", 9, 3);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Meryl Streep", 52, 12);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Robert De Niro", 16, 3);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Bradley Cooper", 7, 3);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Jane Fonda", 20, 3);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Reese Witherspoon", 13, 0);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Will Smith", 10, 0);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Zendaya", 4, 0);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Timothee Chalamet", 3, 3);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Leo DiCaprio", 20, 4);
+INSERT INTO Award_Categories (fullname, "Best Actor/Actress", "Best Supporting Actor/Actress") VALUES ("Sandra Bullock", 9, 0);
+
+
+SELECT movie_stars.fullname, movie_stars.age, movie_stars.in_how_many_movies AS "In # of movies", Nominated_Awards.Academy_Awards, Nominated_Awards.Emmy_Awards, Nominated_Awards.Golden_Globes, Nominated_Awards.Screen_Actors_Guild AS "SAG", Award_Categories."Best Actor/Actress", Award_Categories."Best Supporting Actor/Actress"  
+FROM movie_stars
+JOIN Nominated_Awards
+ON movie_stars.id = Nominated_Awards.id
+JOIN Award_Categories
+ON movie_stars.id = Award_Categories.id
+GROUP BY movie_stars.age
