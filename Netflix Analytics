@@ -1,0 +1,51 @@
+-- Example query (PostgreSQL)
+SELECT * FROM "CharlotteChaze/BreakIntoTech"."netflix_people";
+
+-- Tips:
+-- (*) Table names containing punctuation, capitalization, or spaces should be
+--     quoted, e.g. "Test Data.csv".
+-- (*) Add more data by using the Upload Data button.
+-- (*) Create additional schemas for namespacing your tables, e.g. "CREATE SCHEMA my_schema;".
+-- (*) When querying tables created outside of the public (default) schema,
+--     be sure to specify the desired schema, e.g. "SELECT * FROM my_schema."my data.csv";".
+
+SELECT "CharlotteChaze/BreakIntoTech"."netflix_people"."show_id", 
+"CharlotteChaze/BreakIntoTech"."netflix_titles_info"."title",
+"CharlotteChaze/BreakIntoTech"."netflix_titles_info"."type",
+"CharlotteChaze/BreakIntoTech"."netflix_titles_info"."release_year",
+"CharlotteChaze/BreakIntoTech"."netflix_people"."director",
+"CharlotteChaze/BreakIntoTech"."netflix_people"."cast" 
+ 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people"
+LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ON "CharlotteChaze/BreakIntoTech"."netflix_people"."show_id" = "CharlotteChaze/BreakIntoTech"."netflix_titles_info"."show_id";
+
+
+-- How many movie titles are there in the database? (movies only, not tv shows)
+SELECT count (*)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type= 'Movie';
+
+--When was the most recent batch of tv shows and/or movies added to the database?
+SELECT max(date(date_added))
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+--List all the movies and tv shows in alphabetical order.
+SELECT title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY title asc;
+
+--Who was the Director for the movie Bright Star?
+SELECT director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_people"
+ON "CharlotteChaze/BreakIntoTech"."netflix_titles_info"."show_id"= "CharlotteChaze/BreakIntoTech"."netflix_people"."show_id"
+WHERE "CharlotteChaze/BreakIntoTech"."netflix_titles_info".title ='Bright Star';
+
+--What is the oldest movie in the database and what year was it made?
+SELECT title,
+release_year
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie'
+ORDER BY release_year ASC
+LIMIT 1;
