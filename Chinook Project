@@ -62,3 +62,4 @@ JOIN chinook.invoice_items AS Items
 ON Tracks.trackid = Items.trackid;
 
 -- Write a query that includes the purchased track name AND artist name with each invoice line ID.
+
