@@ -62,4 +62,117 @@ JOIN chinook.invoice_items AS Items
 ON Tracks.trackid = Items.trackid;
 
 -- Write a query that includes the purchased track name AND artist name with each invoice line ID.
+SELECT Tracks.Name AS 'Track Name', Artists.Name AS Artist, Items.InvoiceLineId
+FROM chinook.invoice_items AS Items
+LEFT JOIN chinook.tracks AS Tracks
+ON Tracks.TrackId = Items.TrackId
+INNER JOIN chinook.albums AS Albums
+ON Albums.AlbumId = Tracks.AlbumId
+LEFT JOIN chinook.artists AS Artists
+ON Artists.ArtistId = Albums.ArtistId;
+
+
+-- Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
+SELECT tracks.name AS Track, albums.title AS Album, mediatype.name AS 'Media Type', genres.name AS Genre
+FROM chinook.tracks AS tracks
+JOIN chinook.albums AS albums
+ON tracks.AlbumId = albums.AlbumId
+JOIN chinook.genres AS genres
+ON tracks.GenreId = genres.GenreId
+JOIN chinook.media_types AS mediatype
+ON tracks.MediaTypeId = mediatype.MediaTypeId;
+
+-- Show the total sales made by each sales agent.
+SELECT employees.FirstName, employees.LastName, employees.title AS Title, Round(SUM(Invoices.total),2) AS 'Total Sales'
+FROM chinook.employees as employees
+JOIN chinook.customers as customers
+ON employees.employeeId = customers.supportrepId
+JOIN chinook.invoices as invoices
+ON customers.customerId = invoices.customerId
+WHERE employees.title = 'Sales Support Agent'
+GROUP BY employees.FirstName;
+
+-- Which sales agent made the most dollars in sales in 2009?
+SELECT employees.FirstName, employees.LastName, employees.title AS Title, Round(SUM(Invoices.total),2) AS 'Total Sales'
+FROM chinook.employees as employees
+JOIN chinook.customers as customers
+ON employees.employeeId = customers.supportrepId
+JOIN chinook.invoices as invoices
+ON customers.customerId = invoices.customerId
+WHERE employees.title = 'Sales Support Agent'
+AND invoices.InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
+GROUP BY employees.FirstName
+ORDER BY Round(SUM(Invoices.total),2) DESC LIMIT 1;
+
+--Which customer has the least purchases overall?
+SELECT customers.FirstName, customers.LastName, COUNT(invoices.customerId) AS '# of Purchases'
+FROM chinook.customers AS customers
+JOIN chinook.invoices AS invoices
+ON customers.customerId = invoices.customerId
+GROUP BY customers.FirstName
+ORDER BY COUNT(invoices.customerId) ASC LIMIT 1;
+
+-- What artist has the most sold tracks?
+
+SELECT artists.name as Artist, COUNT(Invoices.invoiceId) AS '# of Tracks sold'
+FROM chinook.tracks as tracks
+JOIN chinook.invoice_items as invoiceitems
+ON tracks.trackId = invoiceitems.trackID
+JOIN chinook.invoices as invoices
+ON invoiceitems.invoiceId = invoices.invoiceId
+JOIN chinook.albums as Albums
+ON tracks.albumId = Albums.albumId
+JOIN chinook.artists as artists
+ON albums.artistId = artists.artistId
+GROUP BY artists.name
+ORDER BY COUNT(Invoices.Invoiceid) DESC LIMIT 1;
+
+-- List the albums each artist has
+SELECT artists.name as Artist, albums.title as Album
+FROM chinook.artists as artists
+JOIN chinook.albums as albums
+ON artists.artistId = albums.artistId
+ORDER BY artists.name; 
+
+-- List the customer names that purchased tracks under the Rock genre.
+SELECT customers.FirstName as FirstName, customers.LastName as LastName, genre.name as Genre
+FROM chinook.customers as customers
+JOIN chinook.invoices as invoices
+ON customers.customerId = invoices.customerId
+JOIN chinook.invoice_items as invoiceitems
+ON invoices.InvoiceId = invoiceitems.InvoiceId
+JOIN chinook.tracks as tracks
+ON invoiceitems.trackId = tracks.trackID
+JOIN chinook.genres as genre
+ON tracks.genreId = genre.genreID
+WHERE genre.name = 'Rock'
+GROUP BY customers.FirstName;
+
+-- What playlists have Frank Sinatra in them?
+SELECT playlists.playlistId, playlists.name as 'Playlist Name', artists.name as 'Artist'
+FROM chinook.playlists as Playlists
+JOIN chinook.playlist_track as Playlisttrack
+ON Playlists.playlistId = playlisttrack.playlistId
+JOIN chinook.tracks as tracks
+ON playlisttrack.trackId = tracks.trackId
+JOIN chinook.albums as albums
+ON tracks.albumId = albums.albumId
+JOIN chinook.artists as artists
+ON albums.artistId = artists.artistId
+WHERE artists.name = 'Frank Sinatra'
+GROUP BY playlists.playlistId
+ORDER BY playlists.playlistId;
+
+-- How many AAC audio files were purchased in 2012? 
+SELECT mediatypes.name as 'Audio Files', COUNT(mediatypes.name) AS '2012 Purchases'
+FROM chinook.invoices as invoices
+JOIN chinook.invoice_items as invoiceitems
+ON invoices.invoiceid = invoiceitems.invoiceid
+JOIN chinook.tracks as tracks
+ON invoiceitems.trackid = tracks.trackid
+JOIN chinook.media_types as mediatypes
+ON tracks.mediatypeId = mediatypes.mediatypeId
+WHERE invoices.invoicedate BETWEEN '2012-01-01' AND '2012-12-31'
+AND mediatypes.name LIKE '%AAC%'
+GROUP BY mediatypes.name;
 
